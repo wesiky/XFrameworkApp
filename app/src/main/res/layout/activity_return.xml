@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReturnActivity">
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/xui_actionbar_height"
+        android:background="?attr/colorPrimary"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvReturn"
+            style="@style/TextStyle.Title"
+            android:textColor="@android:color/white"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:onClick="returnOnClick"
+            android:text="@string/btn_return" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TextStyle.Title"
+            android:textColor="@android:color/white"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/title_order_return" />
+
+        <TextView
+            android:id="@+id/tvSave"
+            style="@style/TextStyle.Title"
+            android:textColor="@android:color/white"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:onClick="saveOnClick"
+            android:text="@string/btn_save" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvOrderCode"
+        style="@style/TextStyle.Content"
+        android:layout_width="80dp"
+        android:layout_height="?attr/xui_config_size_edittext_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/return_order_code"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/etOrderCode"
+        style="@style/TextStyle.Content"
+        android:layout_width="0dp"
+        android:layout_height="?attr/xui_config_size_edittext_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_vertical"
+        android:hint="@string/empty"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvOrderCode"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar"
+        tools:targetApi="o" />
+
+    <TextView
+        android:id="@+id/tvDepartment"
+        style="@style/TextStyle.Content"
+        android:layout_width="80dp"
+        android:layout_height="?attr/xui_config_size_edittext_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="@string/department"
+        app:layout_constraintEnd_toStartOf="@id/spDepartment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etOrderCode" />
+
+    <ListView
+        android:id="@+id/lvBarcode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBarcode" />
+
+    <TextView
+        android:id="@+id/tvBarcode"
+        style="@style/TextStyle.Content"
+        android:layout_width="80dp"
+        android:layout_height="?attr/xui_config_size_edittext_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/barcode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDepartment" />
+
+    <EditText
+        android:id="@+id/etBarcode"
+        style="@style/TextStyle.Content"
+        android:layout_width="0dp"
+        android:layout_height="?attr/xui_config_size_edittext_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/empty"
+        android:inputType="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvBarcode"
+        app:layout_constraintTop_toBottomOf="@+id/spDepartment"
+        tools:targetApi="o" />
+
+    <Spinner
+        android:id="@+id/spDepartment"
+        style="@style/Material.SpinnerStyle"
+        android:layout_width="0dp"
+        android:layout_height="?attr/xui_config_size_edittext_height"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@id/tvAllocationTitle"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@id/tvDepartment"
+        app:layout_constraintTop_toBottomOf="@id/etOrderCode" />
+
+    <TextView
+        android:id="@+id/tvAllocationTitle"
+        style="@style/TextStyle.Content"
+        android:layout_width="50dp"
+        android:layout_height="?attr/xui_config_size_edittext_height"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/allocation"
+        app:layout_constraintEnd_toStartOf="@id/tvAllocation"
+        app:layout_constraintStart_toEndOf="@+id/spDepartment"
+        app:layout_constraintTop_toBottomOf="@+id/etOrderCode" />
+
+    <TextView
+        android:id="@+id/tvAllocation"
+        style="@style/TextStyle.Content"
+        android:layout_width="0dp"
+        android:layout_height="?attr/xui_config_size_edittext_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:text="@string/default_allocation_code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/tvAllocationTitle"
+        app:layout_constraintTop_toBottomOf="@+id/etOrderCode" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

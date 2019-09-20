@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">XFrameworkApp</string>
+    <string name="title_activity_login2">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main3">Main3Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="button">Button</string>
+
+    <string name="btn_return">返回</string>
+    <string name="btn_logout">注销</string>
+
+    <string name="title_main">主页</string>
+    <string name="title_order_check">成品盘点</string>
+    <string name="title_order_delivery">成品出库</string>
+    <string name="title_order_received">成品入库</string>
+    <string name="title_order_change">成品改型</string>
+    <string name="title_order_move">货位移动</string>
+    <string name="title_order_inventory">库存查询</string>
+    <string name="title_order_return">领料退回</string>
+    <string name="title_order_request">领料出库</string>
+    <string name="title_order_transfer">成品调拨</string>
+
+    <string name="received_type">入库类型</string>
+    <string name="title_activity_barcode_list">ActivityBarcodeList</string>
+    <string name="delivert_type">出库类型</string>
+    <string name="warehouse">仓库</string>
+    <string name="barcode_detail">条码明细</string>
+    <string name="product_code">成品编码</string>
+    <string name="product_name">成品描述</string>
+    <string name="btn_save">保存</string>
+    <string name="exit">退出</string>
+    <string name="login">登录</string>
+    <string name="tip_username">请输入用户名</string>
+    <string name="tip_password">请输入密码</string>
+    <string name="delivery_type">出库类型</string>
+    <string name="barcode">条码</string>
+    <string name="department">部门</string>
+    <string name="empty"></string>
+    <string name="delivery_order_code">出库单号</string>
+    <string name="received_order_code">入库单号</string>
+    <string name="request_order_code">领料单号</string>
+    <string name="return_order_code">退回单号</string>
+    <string name="allocation">货位</string>
+    <string name="order_code">单号</string>
+    <string name="allocation_out">移出货位</string>
+    <string name="allocation_in">移入货位</string>
+    <string name="inner_barcode">内盒条码</string>
+    <string name="outer_barcode">外箱条码</string>
+    <string name="status">状态</string>
+    <string name="check_order_code">盘点单号</string>
+    <string name="check_date">盘点日期</string>
+    <string name="allocation_check">货位盘点</string>
+    <string name="title_order_recevied_order">订单入库</string>
+    <string name="default_allocation_code">A01</string>
+    <string name="title_batch_delivery">批次发料</string>
+    <string name="batch_no">批次号</string>
+    <string name="btn_delivery">发料</string>
+    <string name="btn_suspended">挂起</string>
+    <string name="frame_barcode">物料框条码</string>
+    <string name="lack_body">缺本体</string>
+    <string name="lack_attachment">缺附件</string>
+    <string name="normal">正常</string>
+    <string name="title_pend_batch">挂起批单</string>
+    <string name="order_remark">订单备注</string>
+
+</resources>

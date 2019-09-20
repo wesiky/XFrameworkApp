@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/ksoap2-android-assembly-3.5.0-jar-with-dependencies.jar')
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
