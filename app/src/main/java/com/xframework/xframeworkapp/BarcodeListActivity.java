@@ -24,6 +24,7 @@ public class BarcodeListActivity extends AppCompatActivity {
     BarcodeDelegate delegate = new BarcodeDelegate();
     ProductBarcodeList product_barcode_list;
     Intent intent;
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
