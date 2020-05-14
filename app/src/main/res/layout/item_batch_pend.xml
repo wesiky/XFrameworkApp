@@ -1,109 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/xui_config_list_item_selector">
-    <TextView
-        android:id="@+id/tvProductName"
-        style="@style/TextStyle.Content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="start|center_vertical"
-        android:singleLine="false"
-        android:text="DZ15LE-100/4901 100A 50mA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<androidx.constraintlayout.widget.ConstraintLayout android:background="@drawable/xui_config_list_item_selector" android:layout_width="fill_parent" android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:gravity="start|center" android:id="@+id/tvProductName" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="DZ15LE-100/4901 100A 50mA" android:singleLine="false" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintEnd_toStartOf="@id/tvCountName" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/TextStyle.Content" />
 
     <TextView
         android:id="@+id/tvCountName"
         style="@style/TextStyle.Content"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8.0dip"
+        android:layout_marginEnd="8.0dip"
+        android:gravity="start|center"
         android:text="数量"
-        app:layout_constraintBottom_toBottomOf="@id/rdogpStatus"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProductName" />
+        app:layout_constraintBottom_toBottomOf="@id/tvProductName"
+        app:layout_constraintEnd_toStartOf="@id/tvCountValue"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvCountValue"
         style="@style/TextStyle.Content"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start|center_vertical"
-        android:text="99"
-        app:layout_constraintBottom_toBottomOf="@id/rdogpStatus"
-        app:layout_constraintStart_toEndOf="@+id/tvCountName"
-        app:layout_constraintTop_toBottomOf="@id/tvProductName" />
-
-    <RadioGroup
-        android:id="@+id/rdogpStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:checkedButton="@id/rdoNormal"
-        android:orientation="horizontal"
+        android:layout_marginTop="8.0dip"
+        android:layout_marginEnd="8.0dip"
+        android:gravity="start|center"
+        android:text="99"
+        app:layout_constraintBottom_toBottomOf="@id/tvProductName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProductName">
-
-        <RadioButton
-            android:id="@+id/rdoNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/normal" />
-
-        <RadioButton
-            android:id="@+id/rdoLackBody"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/lack_body" />
-
-        <RadioButton
-            android:id="@+id/rdoLackAttachment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/lack_attachment" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/tvRemark"
-        style="@style/TextStyle.Content"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="start|center_vertical"
-        android:text="备注"
-        app:layout_constraintBottom_toBottomOf="@id/etRemark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCountName" />
-
-    <EditText
-        android:id="@+id/etRemark"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvRemark"
-        app:layout_constraintTop_toBottomOf="@id/tvCountValue" />
-
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:gravity="start|center" android:id="@+id/tvRemark" android:layout_width="50.0dip" android:layout_height="0.0dip" android:layout_marginTop="8.0dip" android:text="备注" android:layout_marginStart="8.0dip" app:layout_constraintBottom_toBottomOf="@id/etRemark" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/tvCountName" style="@style/TextStyle.Content" />
+    <EditText android:id="@+id/etRemark" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:ems="10" android:inputType="textPersonName" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/tvRemark" app:layout_constraintTop_toBottomOf="@id/tvCountValue" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,8 @@ import com.xframework.model.MrpSapOrder;
 import com.xframework.model.SystemInfo;
 import com.xframework.model.WS.GetBatchOrderInfoIn;
 import com.xframework.model.WS.GetBatchOrderInfoOut;
+import com.xframework.model.WS.SuspendedBatchAttIn;
+import com.xframework.model.WS.SuspendedBatchAttOut;
 import com.xframework.model.WS.SuspendedBatchOrderIn;
 import com.xframework.model.WS.SuspendedBatchOrderOut;
 import com.xframework.util.XFrameworkWebServiceUtil;
@@ -36,7 +38,6 @@ public class BatchPendActivity extends AppCompatActivity {
         setContentView(R.layout.activity_batch_pend);
 
         tvBatchNo = findViewById(R.id.tvBatchNo);
-        rvProductList = findViewById(R.id.rvProductList);
 
         intent = getIntent();
 
@@ -73,12 +74,12 @@ public class BatchPendActivity extends AppCompatActivity {
 
     public void saveOnClick(View v) {
         //挂起批单
-        SuspendedBatchOrderIn in = new SuspendedBatchOrderIn();
+        SuspendedBatchAttIn in = new SuspendedBatchAttIn();
         in.setUserId(LoginUserInfo.getUserId());
         in.setDeviceCode(SystemInfo.getDeviceCode());
         in.setBatchNo(tvBatchNo.getText().toString());
         in.setProductList(batchItems);
-        SuspendedBatchOrderOut ws_out = XFrameworkWebServiceUtil.API_SuspendedBatchOrder(in);
+        SuspendedBatchAttOut ws_out = XFrameworkWebServiceUtil.API_SuspendedBatchAtt(in);
         Toast.makeText(this, ws_out.getStatus() + ":" + ws_out.getMsg(), Toast.LENGTH_LONG).show();
         if (ws_out.getStatus() == 0) {
             setResult(RESULT_OK);

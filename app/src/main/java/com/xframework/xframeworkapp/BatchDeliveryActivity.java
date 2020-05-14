@@ -33,14 +33,18 @@ import com.xframework.model.WS.CheckBatchOrderBarcodeIn;
 import com.xframework.model.WS.CheckBatchOrderBarcodeOut;
 import com.xframework.model.WS.CheckFrameBarcodeIn;
 import com.xframework.model.WS.CheckFrameBarcodeOut;
+import com.xframework.model.WS.DeliveryBatchBodyIn;
+import com.xframework.model.WS.DeliveryBatchBodyOut;
 import com.xframework.model.WS.GetBatchOrderInfoIn;
 import com.xframework.model.WS.GetBatchOrderInfoOut;
 import com.xframework.model.WS.GetOrderCodeIn;
 import com.xframework.model.WS.GetOrderCodeOut;
 import com.xframework.model.WS.SaveDeliveryBatchOrderIn;
 import com.xframework.model.WS.SaveDeliveryBatchOrderOut;
+import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -56,6 +60,7 @@ public class BatchDeliveryActivity extends AppCompatActivity  implements BatchDe
     private BatchProductAdapter sectionAdapter;
     Intent intent;
     int frameBarcodeLen = 0;
+    ProgressDialogUtil progressDialogUtil = new ProgressDialogUtil();
 
 
     BatchProductBarcodeList batch_product_barcode_list = new BatchProductBarcodeList();
@@ -105,6 +110,7 @@ public class BatchDeliveryActivity extends AppCompatActivity  implements BatchDe
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (i == KeyEvent.KEYCODE_ENTER && !etFrameBarcode.getText().toString().equals("")) {
                     try {
+                        progressDialogUtil.showProgressDialog(BatchDeliveryActivity.this);
                         int len = etFrameBarcode.getText().toString().length();
                         //获取新货位
                         String frameBarcodeNew = etFrameBarcode.getText().toString().substring(0, len - frameBarcodeLen);
@@ -247,6 +253,10 @@ public class BatchDeliveryActivity extends AppCompatActivity  implements BatchDe
 
 
     public void returnOnClick(View v) {
+
+        intent.putExtra("batchNo", tvBatchNo.getText());
+        intent.putExtra("batchData", batch_product_barcode_list);
+        setResult(RESULT_OK, intent);
         this.finish();
     }
 
@@ -271,7 +281,7 @@ public class BatchDeliveryActivity extends AppCompatActivity  implements BatchDe
             Toast.makeText(this, "条码数量超过批单数量，请校对！", Toast.LENGTH_LONG).show();
             return;
         }
-        SaveDeliveryBatchOrderIn ws_in = new SaveDeliveryBatchOrderIn();
+        DeliveryBatchBodyIn ws_in = new DeliveryBatchBodyIn ();
 
         //设置基础数据
         ws_in.setUserId(LoginUserInfo.getUserId());
@@ -306,7 +316,7 @@ public class BatchDeliveryActivity extends AppCompatActivity  implements BatchDe
         }
 
         //保存单据
-        SaveDeliveryBatchOrderOut ws_out = XFrameworkWebServiceUtil.API_SaveDeliveryBatchOrder(ws_in);
+        DeliveryBatchBodyOut ws_out = XFrameworkWebServiceUtil.API_DeliveryBatchBody(ws_in);
 
         Toast.makeText(this, ws_out.getStatus() + ":" + ws_out.getMsg(), Toast.LENGTH_LONG).show();
         //关闭本页

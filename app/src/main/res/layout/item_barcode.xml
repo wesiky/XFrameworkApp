@@ -1,73 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/xui_config_list_item_selector">
-
-    <TextView
-        android:id="@+id/tvBarcodeValue"
-        style="@style/TextStyle.Content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="2184355217232300000"
-        android:textAlignment="textStart"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/tvBarcode"
-        app:layout_constraintEnd_toStartOf="@+id/btnRecheck"
-        app:layout_constraintStart_toEndOf="@id/tvBarcode"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvOuterBarcodeValue"
-        style="@style/TextStyle.Content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="0184355217232300001"
-        android:textAlignment="textStart"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/tvOuterBarcode"
-        app:layout_constraintEnd_toStartOf="@+id/btnRecheck"
-        app:layout_constraintStart_toEndOf="@+id/tvOuterBarcode"
-        app:layout_constraintTop_toBottomOf="@+id/tvBarcodeValue" />
-
-    <ImageButton
-        android:id="@+id/btnRecheck"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/background_light"
-        android:contentDescription="@string/empty"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_delete" />
-
-    <TextView
-        android:id="@+id/tvBarcode"
-        style="@style/TextStyle.Content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/inner_barcode"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvBarcodeValue" />
-
-    <TextView
-        android:id="@+id/tvOuterBarcode"
-        style="@style/TextStyle.Content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/outer_barcode"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvOuterBarcodeValue" />
+<androidx.constraintlayout.widget.ConstraintLayout android:background="@drawable/xui_config_list_item_selector" android:layout_width="fill_parent" android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="14.0sp" android:id="@+id/tvBarcodeValue" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="\ 2184355217232300000" android:textAlignment="textStart" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintBottom_toBottomOf="@id/tvBarcode" app:layout_constraintEnd_toStartOf="@id/btnRecheck" app:layout_constraintStart_toEndOf="@id/tvBarcode" app:layout_constraintTop_toTopOf="parent" style="@style/TextStyle.Content" />
+    <TextView android:textSize="14.0sp" android:id="@+id/tvOuterBarcodeValue" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="\ 0184355217232300001" android:textAlignment="textStart" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintBottom_toBottomOf="@id/tvOuterBarcode" app:layout_constraintEnd_toStartOf="@id/btnRecheck" app:layout_constraintStart_toEndOf="@id/tvOuterBarcode" app:layout_constraintTop_toBottomOf="@id/tvBarcodeValue" style="@style/TextStyle.Content" />
+    <ImageButton android:id="@+id/btnRecheck" android:background="@android:color/background_light" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginTop="8.0dip" android:scaleType="fitXY" android:contentDescription="@string/empty" android:layout_marginEnd="8.0dip" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:srcCompat="@android:drawable/ic_delete" />
+    <TextView android:id="@+id/tvBarcode" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/inner_barcode" android:layout_marginStart="8.0dip" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@id/tvBarcodeValue" style="@style/TextStyle.Content" />
+    <TextView android:id="@+id/tvOuterBarcode" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/outer_barcode" android:layout_marginStart="8.0dip" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@id/tvOuterBarcodeValue" style="@style/TextStyle.Content" />
 </androidx.constraintlayout.widget.ConstraintLayout>

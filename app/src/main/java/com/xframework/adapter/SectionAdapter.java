@@ -63,9 +63,7 @@ public class SectionAdapter extends RecyclerView.Adapter {
                 });
                 return holder0;
             case 1:
-                final ViewHolder holder1 = new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_product, parent, false), viewType);
-                holder1.tvProductCode.setVisibility(View.INVISIBLE);
-                return holder1;
+                return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_product, parent, false), viewType);
             default:
                 return null;
         }
@@ -82,7 +80,6 @@ public class SectionAdapter extends RecyclerView.Adapter {
             case 1:
                 ProductItem itemProduct = (ProductItem)mList.get(position).getTag();
                 myViewHolder.tvProductName.setText(itemProduct.getProductName());
-                myViewHolder.tvProductCode.setText(itemProduct.getProductCode());
                 myViewHolder.tvCountValue.setText(String.valueOf(itemProduct.getQuantity()));
                 break;
         }

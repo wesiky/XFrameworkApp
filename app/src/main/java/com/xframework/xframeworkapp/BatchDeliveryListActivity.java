@@ -1,12 +1,15 @@
 package com.xframework.xframeworkapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.xframework.adapter.SectionAdapter;
 import com.xframework.delegate.BatchDeliveryDelegate;
@@ -16,8 +19,12 @@ import com.xframework.item.ProductItem;
 import com.xframework.model.LoginUserInfo;
 import com.xframework.model.MrpSapOrder;
 import com.xframework.model.SystemInfo;
+import com.xframework.model.WS.GetDeliveryBatchBodyListIn;
+import com.xframework.model.WS.GetDeliveryBatchBodyListOut;
 import com.xframework.model.WS.GetDeliveryBatchOrderListIn;
 import com.xframework.model.WS.GetDeliveryBatchOrderListOut;
+import com.xframework.model.WS.SuspendedBatchBodyIn;
+import com.xframework.model.WS.SuspendedBatchBodyOut;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.util.ArrayList;
@@ -39,7 +46,7 @@ public class BatchDeliveryListActivity extends AppCompatActivity implements Batc
         setContentView(R.layout.activity_batch_delivery_list);
 
         initData();
-        androidx.recyclerview.widget.RecyclerView rvBatchList = findViewById(R.id.rvBatchList);
+        RecyclerView rvBatchList = findViewById(R.id.rvBatchList);
         rvBatchList.setLayoutManager(new LinearLayoutManager(this));
         sectionAdapter = new SectionAdapter(this, mList, this);
         rvBatchList.setAdapter(sectionAdapter);
@@ -48,10 +55,10 @@ public class BatchDeliveryListActivity extends AppCompatActivity implements Batc
     private void initData() {
 
         //获取批单
-        GetDeliveryBatchOrderListIn in = new GetDeliveryBatchOrderListIn();
+        GetDeliveryBatchBodyListIn in = new GetDeliveryBatchBodyListIn();
         in.setUserId(LoginUserInfo.getUserId());
         in.setDeviceCode(SystemInfo.getDeviceCode());
-        GetDeliveryBatchOrderListOut ws_out = XFrameworkWebServiceUtil.API_GetDeliveryBatchOrderList(in);
+        GetDeliveryBatchBodyListOut ws_out = XFrameworkWebServiceUtil.API_GetDeliveryBatchBodyList(in);
         if (ws_out.getStatus() == 0) {
             order_list = ws_out.getOrderList();
         } else {
@@ -100,10 +107,28 @@ public class BatchDeliveryListActivity extends AppCompatActivity implements Batc
     }
 
     @Override
-    public void SuspendedBatch(String batchNo, int startIndex) {
+    public void SuspendedBatch(final String batchNo, int startIndex) {
         deliveryStartIndex = startIndex;
-        Intent intent = new Intent(BatchDeliveryListActivity.this, BatchPendActivity.class);
-        intent.putExtra("batch_no", batchNo);
-        startActivityForResult(intent, 0);
+        AlertDialog.Builder builder = new AlertDialog.Builder(BatchDeliveryListActivity.this);
+        builder.setTitle("请选择").setMessage("确认挂起" + batchNo + "批单吗？");
+        builder.setPositiveButton("是",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SuspendedBatchBodyIn in = new SuspendedBatchBodyIn();
+                in.setBatchNo(batchNo);
+                in.setUserId(LoginUserInfo.getUserId());
+                in.setDeviceCode(SystemInfo.getDeviceCode());
+                SuspendedBatchBodyOut out = XFrameworkWebServiceUtil.API_SuspendedBatchBody(in);
+                Toast.makeText(BatchDeliveryListActivity.this, out.getStatus() + ":" + out.getMsg(), Toast.LENGTH_LONG).show();
+                if (out.getStatus() == 0) {
+                    do {
+                        mList.remove(deliveryStartIndex);
+                    } while (mList.size() > 0 && !mList.get(deliveryStartIndex).isFirst());
+                    BatchDeliveryListActivity.this.sectionAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+        builder.setNeutralButton("否",null);
+        builder.show();
     }
 }

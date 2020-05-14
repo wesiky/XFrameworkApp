@@ -2,38 +2,37 @@ package com.xframework.model.WS;
 
 import com.xframework.model.BaseAllocation;
 import com.xframework.model.BaseModel;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class GetAllocationInfoOut  extends BaseModel {
-    private int status;
+public class GetAllocationInfoOut extends BaseModel {
+    private List<BaseAllocation> allocations = new ArrayList<BaseAllocation>();
+
     private String msg;
-    private List<BaseAllocation> allocations = new ArrayList<>();
 
-    public int getStatus() {
-        return status;
-    }
+    private int status;
 
-    public void setStatus(int status) {
-        this.status = status;
+    public List<BaseAllocation> getAllocations() {
+        return this.allocations;
     }
 
     public String getMsg() {
-        return msg;
+        return this.msg;
+    }
+
+    public int getStatus() {
+        return this.status;
+    }
+
+    public void setAllocations(List<BaseAllocation> allocations) {
+        this.allocations = allocations;
     }
 
     public void setMsg(String msg) {
         this.msg = msg;
     }
 
-    public List<BaseAllocation> getAllocations() {
-        return allocations;
-    }
-
-    public void setAllocations(List<BaseAllocation> allocations) {
-        this.allocations = allocations;
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

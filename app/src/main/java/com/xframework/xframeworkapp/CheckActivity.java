@@ -100,6 +100,7 @@ public class CheckActivity extends AppCompatActivity implements AllocationDelega
         lvAllocation.setAdapter(adapter_allocation);
     }
 
+
     public void returnOnClick(View v) {
         this.finish();
     }

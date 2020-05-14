@@ -3,31 +3,33 @@ package com.xframework.model.WS;
 import com.xframework.model.BaseModel;
 
 public class GetProductInfoByCodeIn extends BaseModel {
-    private int user_id;
-    private String product_code;
     private String device_code;
 
-    public int getUserId() {
-        return user_id;
-    }
+    private String product_code;
 
-    public void setUserId(int user_id) {
-        this.user_id = user_id;
+    private int user_id;
+
+    public String getDeviceCode() {
+        return this.device_code;
     }
 
     public String getProductCode() {
-        return product_code;
+        return this.product_code;
+    }
+
+    public int getUserId() {
+        return this.user_id;
+    }
+
+    public void setDeviceCode(String device_code) {
+        this.device_code = device_code;
     }
 
     public void setProductCode(String product_code) {
         this.product_code = product_code;
     }
 
-    public String getDeviceCode() {
-        return device_code;
-    }
-
-    public void setDeviceCode(String device_code) {
-        this.device_code = device_code;
+    public void setUserId(int user_id) {
+        this.user_id = user_id;
     }
 }

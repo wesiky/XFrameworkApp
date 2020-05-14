@@ -60,11 +60,7 @@ public class BatchPendListAdapter extends RecyclerView.Adapter {
                 holder0.tvSuspended.setVisibility(View.GONE);
                 return holder0;
             case 1:
-                final BatchPendListAdapter.ViewHolder holder1 = new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_batch_pend, parent, false), viewType);
-                holder1.rdoNormal.setClickable(false);
-                holder1.rdoLackBody.setClickable(false);
-                holder1.rdoLackAttachment.setClickable(false);
-                return holder1;
+                return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_batch_pend, parent, false), viewType);
             default:
                 return null;
         }
@@ -82,19 +78,6 @@ public class BatchPendListAdapter extends RecyclerView.Adapter {
                 ProductItem itemProduct = (ProductItem)mList.get(position).getTag();
                 myViewHolder.tvProductName.setText(itemProduct.getProductName());
                 myViewHolder.tvCountValue.setText(String.valueOf(itemProduct.getQuantity()));
-                switch(itemProduct.getStatus()) {
-                    case 0:
-                        myViewHolder.rdogpStatus.check(R.id.rdoNormal);
-                        break;
-                    case 1:
-                        myViewHolder.rdogpStatus.check(R.id.rdoLackBody);
-                        break;
-                    case 2:
-                        myViewHolder.rdogpStatus.check(R.id.rdoLackAttachment);
-                        break;
-                    default:
-                        break;
-                }
                 myViewHolder.etRemark.setText(itemProduct.getRemark());
                 myViewHolder.etRemark.setEnabled(false);
                 break;
@@ -114,10 +97,6 @@ public class BatchPendListAdapter extends RecyclerView.Adapter {
 
         TextView tvProductName;
         TextView tvCountValue;
-        RadioGroup rdogpStatus;
-        RadioButton rdoNormal;
-        RadioButton rdoLackBody;
-        RadioButton rdoLackAttachment;
         EditText etRemark;
         int viewType;
         private ViewHolder(View itemView, int viewType) {
@@ -132,10 +111,6 @@ public class BatchPendListAdapter extends RecyclerView.Adapter {
                 case 1:
                     tvProductName = itemView.findViewById(R.id.tvProductName);
                     tvCountValue =itemView.findViewById(R.id.tvCountValue);
-                    rdogpStatus = itemView.findViewById(R.id.rdogpStatus);
-                    rdoNormal = itemView.findViewById(R.id.rdoNormal);
-                    rdoLackBody = itemView.findViewById(R.id.rdoLackBody);
-                    rdoLackAttachment = itemView.findViewById(R.id.rdoLackAttachment);
                     etRemark = itemView.findViewById(R.id.etRemark);
                     break;
             }

@@ -21,6 +21,8 @@ import com.xframework.model.MrpSapOrder;
 import com.xframework.model.SystemInfo;
 import com.xframework.model.WS.GetDeliveryBatchOrderListIn;
 import com.xframework.model.WS.GetDeliveryBatchOrderListOut;
+import com.xframework.model.WS.GetSuspendedBatchBodyListIn;
+import com.xframework.model.WS.GetSuspendedBatchBodyListOut;
 import com.xframework.model.WS.GetSuspendedBatchOrderListIn;
 import com.xframework.model.WS.GetSuspendedBatchOrderListOut;
 import com.xframework.util.XFrameworkWebServiceUtil;
@@ -49,10 +51,10 @@ public class BatchPendListActivity extends AppCompatActivity  implements BatchDe
 
     private void initData(){
         //获取批单
-        GetSuspendedBatchOrderListIn in = new GetSuspendedBatchOrderListIn();
+        GetSuspendedBatchBodyListIn in = new GetSuspendedBatchBodyListIn ();
         in.setUserId(LoginUserInfo.getUserId());
         in.setDeviceCode(SystemInfo.getDeviceCode());
-        GetSuspendedBatchOrderListOut ws_out = XFrameworkWebServiceUtil.API_GetSuspendedBatchOrderList(in);
+        GetSuspendedBatchBodyListOut ws_out = XFrameworkWebServiceUtil.API_GetSuspendedBatchBodyList(in);
         if (ws_out.getStatus() == 0) {
             order_list = ws_out.getOrderList();
         } else {

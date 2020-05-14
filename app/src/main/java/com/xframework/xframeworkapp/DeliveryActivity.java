@@ -38,6 +38,7 @@ import com.xframework.model.WS.GetOrderCodeIn;
 import com.xframework.model.WS.GetOrderCodeOut;
 import com.xframework.model.WS.SaveDeliveryOrderIn;
 import com.xframework.model.WS.SaveDeliveryOrderOut;
+import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class DeliveryActivity extends AppCompatActivity {
     ProductBarcodeList product_barcode_list = new ProductBarcodeList();
     ProductAdapter adapter_product;
     ListView lvProduct;
+    ProgressDialogUtil progressDialogUtil = new ProgressDialogUtil();
 
     @SuppressLint("WrongViewCast")
     @Override

@@ -5,85 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="125dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="250dp"
-            app:layout_constraintBottom_toTopOf="@+id/et_username"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/login_background" />
-
-        <EditText
-            android:id="@+id/et_username"
-            style="@style/EditText.Material"
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints=""
-            android:hint="@string/tip_username"
-            android:inputType="text"
-            android:paddingStart="10dp"
-            android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView"
-            tools:targetApi="o" />
-
-        <EditText
-            android:id="@+id/et_password"
-            style="@style/EditText.Material"
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:autofillHints=""
-            android:hint="@string/tip_password"
-            android:inputType="textPassword"
-            android:paddingStart="10dp"
-            android:paddingBottom="5dp"
-            android:singleLine="true"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_username"
-            tools:targetApi="o" />
-
-        <Button
-            android:id="@+id/button_login"
-            style="@style/Button.Blue.wrap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:onClick="loginOnClick"
-            android:text="@string/login"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/button_exit"
-            app:layout_constraintTop_toBottomOf="@+id/et_password" />
-
-        <Button
-            android:id="@+id/button_exit"
-            style="@style/Button.Blue.wrap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:onClick="exitOnClick"
-            android:text="@string/exit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/button_login"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:layout_marginBottom="125.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <ImageView android:id="@+id/imageView" android:layout_width="wrap_content" android:layout_height="250.0dip" app:layout_constraintBottom_toTopOf="@id/et_username" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:srcCompat="@drawable/login_background" />
+        <EditText android:id="@+id/et_username" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_marginTop="8.0dip" android:hint="@string/tip_username" android:singleLine="true" android:inputType="text" android:paddingStart="10.0dip" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/imageView" style="@style/EditText.Material" />
+        <EditText android:id="@+id/et_password" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_marginTop="20.0dip" android:hint="@string/tip_password" android:singleLine="true" android:inputType="textPassword" android:paddingStart="10.0dip" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toBottomOf="@id/et_username" style="@style/EditText.Material" />
+        <Button android:id="@+id/button_login" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="@string/login" android:onClick="loginOnClick" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toLeftOf="@id/button_exit" app:layout_constraintTop_toBottomOf="@id/et_password" style="@style/Button.Blue.wrap" />
+        <Button android:id="@+id/button_exit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="@string/exit" android:onClick="exitOnClick" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toRightOf="@id/button_login" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toBottomOf="@id/et_password" style="@style/Button.Blue.wrap" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

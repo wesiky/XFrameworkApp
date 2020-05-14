@@ -35,24 +35,19 @@ import com.xframework.model.SystemInfo;
 import com.xframework.model.TMGLProBcTree;
 import com.xframework.model.WS.CheckBarcodeInfoIn;
 import com.xframework.model.WS.CheckBarcodeInfoOut;
-import com.xframework.model.WS.CheckReceivedBarcodeIn;
-import com.xframework.model.WS.CheckReceivedBarcodeOut;
 import com.xframework.model.WS.GetOrderCodeIn;
 import com.xframework.model.WS.GetOrderCodeOut;
-import com.xframework.model.WS.GetProductInfoByCodeIn;
-import com.xframework.model.WS.GetProductInfoByCodeOut;
-import com.xframework.model.WS.GetProductInfoIn;
-import com.xframework.model.WS.LoginOut;
 import com.xframework.model.WS.SaveReceivedOrderIn;
 import com.xframework.model.WS.SaveReceivedOrderOut;
+import com.xframework.model.WSChint.GetBarcodeOut;
 import com.xframework.util.ChintWebServiceUtil;
+import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ReceivedActivity extends AppCompatActivity {
 
@@ -63,8 +58,12 @@ public class ReceivedActivity extends AppCompatActivity {
     ProductBarcodeList product_barcode_list = new ProductBarcodeList();
     ProductAdapter adapter_product;
     ListView lvProduct;
+
     int allocationLen = 0;
+
     BaseAllocation allocation;
+
+    ProgressDialogUtil progressDialogUtil = new ProgressDialogUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,27 +167,26 @@ public class ReceivedActivity extends AppCompatActivity {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (i == KeyEvent.KEYCODE_ENTER && !etBarcode.getText().toString().equals("")) {
-                    try {
-                        final String barcode = etBarcode.getText().toString();
-                        //非外箱进行条码验证
-                        if (!barcode.startsWith("0")) {
-                            if (product_barcode_list.findBarcode(barcode) >= 0) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(ReceivedActivity.this);
-                                builder.setTitle("请选择").setMessage("条码" + barcode + "已扫描，要删除吗？");
-                                builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        product_barcode_list.removeBarcode(barcode);
-                                        adapter_product = new ProductAdapter(ReceivedActivity.this, R.layout.item_product, product_barcode_list.getItems());
-                                        lvProduct.setAdapter(adapter_product);
-                                        Toast.makeText(ReceivedActivity.this, "条码" + barcode + "已删除", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                builder.setNeutralButton("否", null);
-                                builder.show();
-                                return true;
-                            }
+                    final String barcode = etBarcode.getText().toString();
+                    //非外箱进行条码验证
+                    if (!barcode.startsWith("0")) {
+                        if (product_barcode_list.findBarcode(barcode) >= 0) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ReceivedActivity.this);
+                            builder.setTitle("请选择").setMessage("条码" + barcode + "已扫描，要删除吗？");
+                            builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    product_barcode_list.removeBarcode(barcode);
+                                    adapter_product = new ProductAdapter(ReceivedActivity.this, R.layout.item_product, product_barcode_list.getItems());
+                                    lvProduct.setAdapter(adapter_product);
+                                    Toast.makeText(ReceivedActivity.this, "条码" + barcode + "已删除", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            builder.setNeutralButton("否", null);
+                            builder.show();
+                            return true;
                         }
+                    }
 //                        //校验条码
 //                        CheckReceivedBarcodeIn in = new CheckReceivedBarcodeIn();
 //                        in.setUserId(LoginUserInfo.getUserId());
@@ -207,96 +205,28 @@ public class ReceivedActivity extends AppCompatActivity {
 //                            Toast.makeText(ReceivedActivity.this, "条码" + etBarcode.getText() + "扫码失败：" + ws_out.getStatus() + ":" + ws_out.getMsg(), Toast.LENGTH_LONG).show();
 //                        }
 
-                        //2019-09-19 更新为从正泰接口读取条码数据
-                        HashMap<String, String> params = new HashMap<>();
-                        params.put("barcode", barcode);
-                        String result = ChintWebServiceUtil.callToWebService("GetBarcodeTreeInfo", params);
-                        BaseProduct product = null;
-                        TMGLProBcTree[] barcodes = null;
-                        try {
-                            Gson gson = new Gson();
-                            barcodes = gson.fromJson(result, TMGLProBcTree[].class);
-                        } catch (Exception e) {
-                            Toast.makeText(ReceivedActivity.this, "查询条码" + etBarcode.getText() + "关联信息失败：" + result, Toast.LENGTH_LONG).show();
-                        }
-
-                        //删除多余条码
-                        List<PWProductBarcode> pwBarcodes = new ArrayList<>();
-                        //若为外箱条码则只保留关联的内盒条码
-                        if (barcode.length() == 19 && barcode.startsWith("0")) {
-                            for (TMGLProBcTree tmgl_barcode : barcodes) {
-                                if (tmgl_barcode.getLBCID().length() == 19 && tmgl_barcode.getLBCID().startsWith("2")) {
-                                    PWProductBarcode product_barcode = new PWProductBarcode();
-                                    product_barcode.setBarcode(tmgl_barcode.getLBCID());
-                                    product_barcode.setAllocationId(-1);
-                                    product_barcode.setOuterBarcode(tmgl_barcode.getCBCID());
-                                    product_barcode.setProductCode(tmgl_barcode.getMATNR());
-                                    product_barcode.setSourceId(0);
-                                    pwBarcodes.add(product_barcode);
-                                }
+                    //2019-09-19 更新为从正泰接口读取条码数据
+                    try {
+                        GetBarcodeOut ws_out = ChintWebServiceUtil.GetReceivedBarcode("barcode");
+                        if (i == 0) {
+                            for (PWProductBarcode pWProductBarcode : ws_out.getBarcodes()) {
+                                if (product_barcode_list.findBarcode(pWProductBarcode.getBarcode()) < 0)
+                                    product_barcode_list.addBarocde(pWProductBarcode);
                             }
-                        }
-                        //若为非外箱条码则只增加自己
-                        else {
-                            for (TMGLProBcTree tmgl_barcode : barcodes) {
-                                if (tmgl_barcode.getLBCID().equals(barcode)) {
-                                    PWProductBarcode product_barcode = new PWProductBarcode();
-                                    product_barcode.setBarcode(tmgl_barcode.getLBCID());
-                                    product_barcode.setAllocationId(-1);
-                                    product_barcode.setOuterBarcode(tmgl_barcode.getCBCID());
-                                    product_barcode.setProductCode(tmgl_barcode.getMATNR());
-                                    product_barcode.setSourceId(0);
-                                    pwBarcodes.add(product_barcode);
-                                }
-                            }
-                        }
-
-                        //校验产品和条码信息
-                        if (pwBarcodes.size() > 0) {
-                            CheckBarcodeInfoIn in = new CheckBarcodeInfoIn();
-                            in.setUserId(LoginUserInfo.getUserId());
-                            in.setProductCode(barcodes[0].getMATNR());
-                            List<String> tmgl_barcodes = new ArrayList<>();
-                            for (PWProductBarcode pwBarcode : pwBarcodes) {
-                                tmgl_barcodes.add(pwBarcode.getBarcode());
-                            }
-                            in.setBarcodes(tmgl_barcodes);
-                            in.setDeviceCode(SystemInfo.getDeviceCode());
-                            CheckBarcodeInfoOut ws_out = XFrameworkWebServiceUtil.API_CheckBarcodeInfo(in);
-                            if (ws_out.getStatus() == 0) {
-                                if (ws_out.getProduct() == null) {
-                                    Toast.makeText(ReceivedActivity.this, "非成品库产品条码，无法入库", Toast.LENGTH_LONG).show();
-                                    return true;
-                                } else {
-                                    product = ws_out.getProduct();
-                                    //删除已入库条码
-                                    for (String bc : ws_out.getBarcodes()) {
-                                        for (int index = 0; index < pwBarcodes.size(); index++) {
-                                            if (pwBarcodes.get(index).getBarcode().equals(bc)) {
-                                                pwBarcodes.remove(index);
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                            } else {
-                                Toast.makeText(ReceivedActivity.this, "产品信息获取失败：" + ws_out.getStatus() + ":" + ws_out.getMsg(), Toast.LENGTH_LONG).show();
-                                return true;
-                            }
-                        }
-                        //若为外箱条码则增加关联的内盒条码
-                        for (PWProductBarcode pwBarcode : pwBarcodes) {
-                            if (product_barcode_list.findBarcode(pwBarcode.getBarcode()) < 0) {
-                                pwBarcode.setProductId(product.getProductId());
-                                pwBarcode.setProductCode(product.getProductCode());
-                                pwBarcode.setProductName(product.getProductName());
-                                product_barcode_list.addBarocde(pwBarcode);
-                            }
+                            adapter_product = new ProductAdapter(ReceivedActivity.this, R.layout.item_product, product_barcode_list.getItems());
+                            lvProduct.setAdapter(adapter_product);
+                            Toast.makeText(ReceivedActivity.this, "条码" + etBarcode.getText() + "扫码成功", Toast.LENGTH_LONG).show();
+                            ReceivedActivity.this.etBarcode.setFocusable(true);
+                            ReceivedActivity.this.etBarcode.setFocusableInTouchMode(true);
+                            ReceivedActivity.this.etBarcode.requestFocus();
+                        } else {
+                            Toast.makeText(ReceivedActivity.this, "条码" + etBarcode.getText() + "扫码失败：" + ws_out.getStatus() + ":" + ws_out.getMsg(), Toast.LENGTH_LONG).show();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
                         etBarcode.getText().clear();
+                        progressDialogUtil.dismiss();
                     }
                     //设置产品清单
                     adapter_product = new ProductAdapter(ReceivedActivity.this, R.layout.item_product, product_barcode_list.getItems());

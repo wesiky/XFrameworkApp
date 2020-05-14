@@ -29,14 +29,14 @@
             android:text="@string/btn_return" />
 
         <TextView
+            android:id="@+id/tvTitle"
             style="@style/TextStyle.Title"
             android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginEnd="50dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/title_order_transfer" />
 
+            android:text="@string/title_order_transfer" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

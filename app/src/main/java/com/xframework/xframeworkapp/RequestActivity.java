@@ -37,6 +37,7 @@ import com.xframework.model.WS.GetOrderCodeIn;
 import com.xframework.model.WS.GetOrderCodeOut;
 import com.xframework.model.WS.SaveRequestOrderIn;
 import com.xframework.model.WS.SaveRequestOrderOut;
+import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.util.ArrayList;
@@ -52,6 +53,8 @@ public class RequestActivity extends AppCompatActivity {
     ProductBarcodeList product_barcode_list = new ProductBarcodeList();
     ProductAdapter adapter_product;
     ListView lvProduct;
+
+    ProgressDialogUtil progressDialogUtil = new ProgressDialogUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

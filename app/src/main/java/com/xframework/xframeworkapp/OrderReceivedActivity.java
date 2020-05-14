@@ -35,6 +35,7 @@ import com.xframework.model.WS.GetOrderCodeIn;
 import com.xframework.model.WS.GetOrderCodeOut;
 import com.xframework.model.WS.SaveReceivedOrderIn;
 import com.xframework.model.WS.SaveReceivedOrderOut;
+import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.util.Date;
@@ -51,6 +52,8 @@ public class OrderReceivedActivity extends AppCompatActivity {
     ProductAdapter adapter_product;
     ListView lvProduct;
     BaseAllocation allocation;
+
+    ProgressDialogUtil progressDialogUtil = new ProgressDialogUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +158,7 @@ public class OrderReceivedActivity extends AppCompatActivity {
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (i == KeyEvent.KEYCODE_ENTER && !etBarcode.getText().toString().equals("")) {
                     try {
+                        progressDialogUtil.showProgressDialog(OrderReceivedActivity.this);
                         final String barcode = etBarcode.getText().toString();
                         //校验条码
                         CheckOrderReceivedBarcodeIn in = new CheckOrderReceivedBarcodeIn();
@@ -177,6 +181,7 @@ public class OrderReceivedActivity extends AppCompatActivity {
                         e.printStackTrace();
                     } finally {
                         etBarcode.getText().clear();
+                        progressDialogUtil.dismiss();
                     }
                 }
                 return true;

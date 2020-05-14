@@ -132,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
     public void loginOnClick(View v) {
         Button button_login = (Button) findViewById(R.id.button_login);
         EditText edit_username = (EditText) findViewById(R.id.et_username);

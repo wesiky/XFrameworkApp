@@ -75,6 +75,7 @@ public class BarcodeListActivity extends AppCompatActivity {
         this.finish();
     }
 
+
     private class BarcodeDelegate implements BaseDelegate{
         @Override
         public boolean removeBarcodes(String barcode) {

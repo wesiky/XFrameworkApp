@@ -33,6 +33,7 @@ import com.xframework.model.WS.GetOrderCodeIn;
 import com.xframework.model.WS.GetOrderCodeOut;
 import com.xframework.model.WS.SaveMoveOrderIn;
 import com.xframework.model.WS.SaveMoveOrderOut;
+import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.util.Date;
@@ -48,6 +49,8 @@ public class ProductMoveActivity extends AppCompatActivity {
 
     BaseAllocation allocationIn;
     int allocationInLen=0;
+
+    ProgressDialogUtil progressDialogUtil = new ProgressDialogUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +139,7 @@ public class ProductMoveActivity extends AppCompatActivity {
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (i == KeyEvent.KEYCODE_ENTER && !etBarcode.getText().toString().equals("")) {
                         try {
+                            progressDialogUtil.showProgressDialog(ProductMoveActivity.this);
                             final String barcode = etBarcode.getText().toString();
                             //非外箱进行条码验证
                             if (!barcode.startsWith("0")) {
@@ -177,6 +181,7 @@ public class ProductMoveActivity extends AppCompatActivity {
                             e.printStackTrace();
                         } finally {
                             etBarcode.getText().clear();
+                            progressDialogUtil.dismiss();
                         }
                 }
                 return true;

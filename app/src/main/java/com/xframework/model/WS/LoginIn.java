@@ -2,32 +2,34 @@ package com.xframework.model.WS;
 
 import com.xframework.model.BaseModel;
 
-public class LoginIn  extends BaseModel {
-    private String user_name;
-    private String password;
+public class LoginIn extends BaseModel {
     private String device_code;
 
-    public String getUserName() {
-        return user_name;
-    }
+    private String password;
 
-    public void setUserName(String user_name) {
-        this.user_name = user_name;
+    private String user_name;
+
+    public String getDeviceCode() {
+        return this.device_code;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
+    }
+
+    public String getUserName() {
+        return this.user_name;
+    }
+
+    public void setDeviceCode(String device_code) {
+        this.device_code = device_code;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getDeviceCode() {
-        return device_code;
-    }
-
-    public void setDeviceCode(String device_code) {
-        this.device_code = device_code;
+    public void setUserName(String user_name) {
+        this.user_name = user_name;
     }
 }

@@ -4,31 +4,33 @@ import com.xframework.model.BaseModel;
 import com.xframework.model.BaseProduct;
 
 public class GetProductInfoByCodeOut extends BaseModel {
-    private int status;
     private String msg;
+
     private BaseProduct product;
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
+    private int status;
 
     public String getMsg() {
-        return msg;
+        return this.msg;
+    }
+
+    public BaseProduct getProduct() {
+        return this.product;
+    }
+
+    public int getStatus() {
+        return this.status;
     }
 
     public void setMsg(String msg) {
         this.msg = msg;
     }
 
-    public BaseProduct getProduct() {
-        return product;
-    }
-
     public void setProduct(BaseProduct product) {
         this.product = product;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

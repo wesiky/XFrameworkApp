@@ -37,6 +37,7 @@ import com.xframework.model.WS.GetOrderCodeIn;
 import com.xframework.model.WS.GetOrderCodeOut;
 import com.xframework.model.WS.SaveReturnOrderIn;
 import com.xframework.model.WS.SaveReturnOrderOut;
+import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.util.Date;
@@ -53,6 +54,8 @@ public class ReturnActivity extends AppCompatActivity {
     ListView lvProduct;
     int allocationLen = 0;
     BaseAllocation allocation;
+
+    ProgressDialogUtil progressDialogUtil = new ProgressDialogUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

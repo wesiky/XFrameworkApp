@@ -3,22 +3,23 @@ package com.xframework.model.WS;
 import com.xframework.model.BaseModel;
 
 public class SaveReturnOrderOut extends BaseModel {
-    private int status;
     private String msg;
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
+    private int status;
 
     public String getMsg() {
-        return msg;
+        return this.msg;
+    }
+
+    public int getStatus() {
+        return this.status;
     }
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

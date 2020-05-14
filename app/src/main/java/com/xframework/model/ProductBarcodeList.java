@@ -1,14 +1,58 @@
 package com.xframework.model;
 
 import com.xframework.item.ProductItem;
-
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ProductBarcodeList implements Serializable {
     private List<PWProductBarcode> barcodes = new ArrayList<>();
+
     private ArrayList<ProductItem> items = new ArrayList<>();
+
+    public void addBarcodes(List<PWProductBarcode> barcodes) {
+        for (PWProductBarcode barcode:barcodes) {
+            addBarocde(barcode);
+        }
+    }
+
+    public void addBarocde(PWProductBarcode barcode) {
+        barcodes.add(barcode);
+        int i = findItem(barcode.getProductCode());
+        if (i < 0) {
+            ProductItem item = new ProductItem();
+            item.setProductId(barcode.getProductId());
+            item.setProductCode(barcode.getProductCode());
+            item.setProductName(barcode.getProductName());
+            item.setQuantity(1);
+            items.add(item);
+            return;
+        }
+        ProductItem productItem = items.get(i);
+        productItem.setQuantity(productItem.getQuantity() + 1);
+    }
+
+    public void clear() {
+        barcodes.clear();
+        items.clear();
+    }
+
+    public int findBarcode(String barcode) {
+        for (int i = 0; i < barcodes.size(); i++) {
+            if (barcodes.get(i).getBarcode().equals(barcode))
+                return i;
+        }
+        return -1;
+    }
+
+    public int findItem(String productName) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getProductCode().equals(productName))
+                return i;
+        }
+        return -1;
+    }
 
     public List<PWProductBarcode> getBarcodes() {
         return barcodes;
@@ -18,99 +62,38 @@ public class ProductBarcodeList implements Serializable {
         return items;
     }
 
-    public void addBarcodes(List<PWProductBarcode> barcodes) {
-        for (PWProductBarcode barcode : barcodes) {
-            addBarocde(barcode);
-        }
-    }
-
-    /**
-     * @param barcode 新增条码
-     */
-    public void addBarocde(PWProductBarcode barcode) {
-        barcodes.add(barcode);
-        int position = findItem(barcode.getProductCode());
-        if (position < 0) {
-            ProductItem item = new ProductItem();
-            item.setProductId(barcode.getProductId());
-            item.setProductCode(barcode.getProductCode());
-            item.setProductName(barcode.getProductName());
-            item.setQuantity(1);
-            items.add(item);
-        } else {
-            ProductItem item = items.get(position);
-            item.setQuantity(item.getQuantity() + 1);
-        }
-    }
-
-    /**
-     * @param barcode 移除条码
-     */
     public boolean removeBarcode(PWProductBarcode barcode) {
-        if (!barcodes.remove(barcode)) {
+        if (!barcodes.remove(barcode))
             return false;
-        } else {
-            int position = findItem(barcode.getProductCode());
-            if (position < 0) {
-                return false;
-            } else {
-                ProductItem item = items.get(position);
-                if (item.getQuantity() == 1) {
-                    items.remove(item);
-                } else {
-                    item.setQuantity(item.getQuantity() - 1);
-                }
-            }
+        int i = findItem(barcode.getProductCode());
+        if (i < 0)
+            return false;
+        ProductItem item = items.get(i);
+        if (item.getQuantity() == 1) {
+            items.remove(item);
+            return true;
         }
+        item.setQuantity(item.getQuantity() - 1);
         return true;
     }
 
-    /**
-     * @param barcode 移除条码
-     */
     public boolean removeBarcode(String barcode) {
-        int position = findBarcode(barcode);
-        if (position < 0) {
+        int i = findBarcode(barcode);
+        if (i < 0)
             return false;
-        } else {
-            PWProductBarcode product_barcode = barcodes.get(position);
-            if (barcodes.remove(product_barcode)) {
-                position = findItem(product_barcode.getProductCode());
-                if (position >= 0) {
-                    ProductItem item = items.get(position);
-                    if (item.getQuantity() == 1) {
-                        items.remove(item);
-                    } else {
-                        item.setQuantity(item.getQuantity() - 1);
-                    }
+        PWProductBarcode productBarcode = barcodes.get(i);
+        if (barcodes.remove(productBarcode)) {
+            i = findItem(productBarcode.getProductCode());
+            if (i >= 0) {
+                ProductItem item = items.get(i);
+                if (item.getQuantity() == 1) {
+                    items.remove(item);
+                    return true;
                 }
-            } else {
-                return false;
+                item.setQuantity(item.getQuantity() - 1);
             }
             return true;
         }
-    }
-
-    public int findItem(String product_code) {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getProductCode().equals(product_code)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public int findBarcode(String barcode) {
-        for (int i = 0; i < barcodes.size(); i++) {
-            if (barcodes.get(i).getBarcode().equals(barcode)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public void clear() {
-        barcodes.clear();
-        items.clear();
+        return false;
     }
 }

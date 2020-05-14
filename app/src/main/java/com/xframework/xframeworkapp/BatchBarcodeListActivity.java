@@ -23,7 +23,7 @@ import com.xframework.model.ProductBarcodeList;
 import java.util.ArrayList;
 
 public class BatchBarcodeListActivity extends AppCompatActivity {
-    BatchBarcodeListActivity.BarcodeDelegate delegate = new BatchBarcodeListActivity.BarcodeDelegate();
+    BarcodeDelegate delegate = new BarcodeDelegate();
     BatchProductBarcodeList batch_product_barcode_list;
     Intent intent;
     @Override

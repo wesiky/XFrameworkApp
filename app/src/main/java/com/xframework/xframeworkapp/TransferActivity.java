@@ -18,6 +18,7 @@ public class TransferActivity extends AppCompatActivity {
         setContentView(R.layout.activity_transfer);
     }
 
+
     public void returnOnClick(View v) {
         this.finish();
     }

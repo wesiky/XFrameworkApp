@@ -18,6 +18,7 @@ public class ProductQueryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_query);
     }
 
+
     public void returnOnClick(View v) {
         this.finish();
     }

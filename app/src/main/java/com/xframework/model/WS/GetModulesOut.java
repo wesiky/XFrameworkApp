@@ -3,31 +3,33 @@ package com.xframework.model.WS;
 import com.xframework.model.ModuleType;
 
 public class GetModulesOut {
-    private int status;
-    private String msg;
     private ModuleType[] module_types;
 
-    public int getStatus() {
-        return status;
-    }
+    private String msg;
 
-    public void setStatus(int status) {
-        this.status = status;
+    private int status;
+
+    public ModuleType[] getModuleTypes() {
+        return this.module_types;
     }
 
     public String getMsg() {
-        return msg;
+        return this.msg;
+    }
+
+    public int getStatus() {
+        return this.status;
+    }
+
+    public void setModuleTypes(ModuleType[] module_types) {
+        this.module_types = module_types;
     }
 
     public void setMsg(String msg) {
         this.msg = msg;
     }
 
-    public ModuleType[] getModuleTypes() {
-        return module_types;
-    }
-
-    public void setModuleTypes(ModuleType[] module_types) {
-        this.module_types = module_types;
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

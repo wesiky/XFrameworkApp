@@ -36,26 +36,7 @@ public class BatchPendAdapter  extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final BatchPendAdapter.ViewHolder holder = new BatchPendAdapter.ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_batch_pend, parent, false));
-
-        holder.rdogpStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int position = holder.getAdapterPosition();
-                switch (checkedId) {
-                    case R.id.rdoNormal:
-                        mList.get(position).setStatus(0);
-                        break;
-                    case R.id.rdoLackBody:
-                        mList.get(position).setStatus(1);
-                        break;
-                    case R.id.rdoLackAttachment:
-                        mList.get(position).setStatus(2);
-                        break;
-                }
-            }
-        });
-        return holder;
+        return new BatchPendAdapter.ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_batch_pend, parent, false));
     }
 
     @Override
@@ -65,17 +46,6 @@ public class BatchPendAdapter  extends RecyclerView.Adapter {
         MrpSapOrder item = mList.get(position);
         myViewHolder.tvProductName.setText(item.getProductName());
         myViewHolder.tvCountValue.setText(String.valueOf(item.getCount()));
-        switch (item.getStatus()){
-            case 0:
-                myViewHolder.rdogpStatus.check(R.id.rdoNormal);
-                break;
-            case 1:
-                myViewHolder.rdogpStatus.check(R.id.rdoLackBody);
-                break;
-            case 2:
-                myViewHolder.rdogpStatus.check(R.id.rdoLackAttachment);
-                break;
-        }
         myViewHolder.etRemark.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -95,14 +65,12 @@ public class BatchPendAdapter  extends RecyclerView.Adapter {
 
         TextView tvProductName;
         TextView tvCountValue;
-        RadioGroup rdogpStatus;
         EditText etRemark;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvProductName = itemView.findViewById(R.id.tvProductName);
             tvCountValue = itemView.findViewById(R.id.tvCountValue);
-            rdogpStatus = itemView.findViewById(R.id.rdogpStatus);
             etRemark = itemView.findViewById(R.id.etRemark);
         }
     }

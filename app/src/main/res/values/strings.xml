@@ -83,4 +83,11 @@
     <string name="title_pend_batch">挂起批单</string>
     <string name="order_remark">订单备注</string>
 
+    <string name="title_spare_check">备品备件盘点</string>
+    <string name="title_spare_move">货位移动</string>
+    <string name="title_spare_received">备品备件入库</string>
+    <string name="title_spare_request">备品备件领料</string>
+    <string name="title_spare_return">备品备件退回</string>
+    <string name="title_spare_scrap">备品备件报废</string>
+
 </resources>

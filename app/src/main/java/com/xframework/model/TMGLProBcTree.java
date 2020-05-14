@@ -3,85 +3,93 @@ package com.xframework.model;
 import java.io.Serializable;
 
 public class TMGLProBcTree extends BaseModel implements Serializable {
-    private int MJAHR;
-    private String CBCID;
-    private String LBCID;
     private String BCTYP;
-    private String STATE;
-    private String IFSAL;
-    private String IFDEL;
+
     private String BHNUM;
+
+    private String CBCID;
+
+    private String IFDEL;
+
+    private String IFSAL;
+
+    private String LBCID;
+
     private String MATNR;
 
-    public int getMJAHR() {
-        return MJAHR;
+    private int MJAHR;
+
+    private String STATE;
+
+    public String getBCTYP() {
+        return this.BCTYP;
     }
 
-    public void setMJAHR(int MJAHR) {
-        this.MJAHR = MJAHR;
+    public String getBHNUM() {
+        return this.BHNUM;
     }
 
     public String getCBCID() {
-        return CBCID;
+        return this.CBCID;
     }
 
-    public void setCBCID(String CBCID) {
-        this.CBCID = CBCID;
+    public String getIFDEL() {
+        return this.IFDEL;
+    }
+
+    public String getIFSAL() {
+        return this.IFSAL;
     }
 
     public String getLBCID() {
-        return LBCID;
+        return this.LBCID;
     }
 
-    public void setLBCID(String LBCID) {
-        this.LBCID = LBCID;
+    public String getMATNR() {
+        return this.MATNR;
     }
 
-    public String getBCTYP() {
-        return BCTYP;
+    public int getMJAHR() {
+        return this.MJAHR;
+    }
+
+    public String getSTATE() {
+        return this.STATE;
     }
 
     public void setBCTYP(String BCTYP) {
         this.BCTYP = BCTYP;
     }
 
-    public String getSTATE() {
-        return STATE;
+    public void setBHNUM(String BHNUM) {
+        this.BHNUM = BHNUM;
     }
 
-    public void setSTATE(String STATE) {
-        this.STATE = STATE;
-    }
-
-    public String getIFSAL() {
-        return IFSAL;
-    }
-
-    public void setIFSAL(String IFSAL) {
-        this.IFSAL = IFSAL;
-    }
-
-    public String getIFDEL() {
-        return IFDEL;
+    public void setCBCID(String CBCID) {
+        this.CBCID = CBCID;
     }
 
     public void setIFDEL(String IFDEL) {
         this.IFDEL = IFDEL;
     }
 
-    public String getBHNUM() {
-        return BHNUM;
+    public void setIFSAL(String IFSAL) {
+        this.IFSAL = IFSAL;
     }
 
-    public void setBHNUM(String BHNUM) {
-        this.BHNUM = BHNUM;
-    }
-
-    public String getMATNR() {
-        return MATNR;
+    public void setLBCID(String LBCID) {
+        this.LBCID = LBCID;
     }
 
     public void setMATNR(String MATNR) {
         this.MATNR = MATNR;
+    }
+
+    public void setMJAHR(int MJAHR) {
+        this.MJAHR = MJAHR;
+    }
+
+    public void setSTATE(String STATE) {
+        this.STATE = STATE;
     }
 }

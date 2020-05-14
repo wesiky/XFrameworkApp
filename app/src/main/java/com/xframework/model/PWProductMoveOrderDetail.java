@@ -4,113 +4,123 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class PWProductMoveOrderDetail extends BaseModel implements Serializable {
-    private int id;
-    private String order_code;
-    private String outer_barcode;
-    private String product_barcode;
-    private int product_id;
-    private String description;
     private Date create_date;
+
     private String create_user;
-    private Date last_update_date;
-    private String last_update_user;
+
+    private String description;
+
     private boolean enable = true;
 
-    public int getOldAllocationId() {
-        return old_allocation_id;
-    }
+    private int id;
 
-    public void setOldAllocationId(int old_allocation_id) {
-        this.old_allocation_id = old_allocation_id;
-    }
+    private Date last_update_date;
+
+    private String last_update_user;
 
     private int old_allocation_id;
 
-    public int getId() {
-        return id;
-    }
+    private String order_code;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    private String outer_barcode;
 
-    public String getOrderCode() {
-        return order_code;
-    }
+    private String product_barcode;
 
-    public void setOrderCode(String order_code) {
-        this.order_code = order_code;
-    }
+    private int product_id;
 
-    public String getOuterBarcode() {
-        return outer_barcode;
-    }
-
-    public void setOuterBarcode(String outer_barcode) {
-        this.outer_barcode = outer_barcode;
-    }
-
-    public String getProductBarcode() {
-        return product_barcode;
-    }
-
-    public void setProductBarcode(String product_barcode) {
-        this.product_barcode = product_barcode;
-    }
-
-    public int getProductId() {
-        return product_id;
-    }
-
-    public void setProductId(int product_id) {
-        this.product_id = product_id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public boolean GetEnable() {
+        return this.enable;
     }
 
     public Date getCreateDate() {
-        return create_date;
+        return this.create_date;
+    }
+
+    public String getCreateUser() {
+        return this.create_user;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public Date getLastUpdateDate() {
+        return this.last_update_date;
+    }
+
+    public String getLastUpdateUser() {
+        return this.last_update_user;
+    }
+
+    public int getOldAllocationId() {
+        return this.old_allocation_id;
+    }
+
+    public String getOrderCode() {
+        return this.order_code;
+    }
+
+    public String getOuterBarcode() {
+        return this.outer_barcode;
+    }
+
+    public String getProductBarcode() {
+        return this.product_barcode;
+    }
+
+    public int getProductId() {
+        return this.product_id;
     }
 
     public void setCreateDate(Date create_date) {
         this.create_date = create_date;
     }
 
-    public String getCreateUser() {
-        return create_user;
-    }
-
     public void setCreateUser(String create_user) {
         this.create_user = create_user;
     }
 
-    public Date getLastUpdateDate() {
-        return last_update_date;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setLastUpdateDate(Date last_update_date) {
         this.last_update_date = last_update_date;
     }
 
-    public String getLastUpdateUser() {
-        return last_update_user;
-    }
-
     public void setLastUpdateUser(String last_update_user) {
         this.last_update_user = last_update_user;
     }
 
-    public boolean GetEnable() {
-        return enable;
+    public void setOldAllocationId(int old_allocation_id) {
+        this.old_allocation_id = old_allocation_id;
     }
 
-    public void setEnable(boolean enable) {
-        this.enable = enable;
+    public void setOrderCode(String order_code) {
+        this.order_code = order_code;
+    }
+
+    public void setOuterBarcode(String outer_barcode) {
+        this.outer_barcode = outer_barcode;
+    }
+
+    public void setProductBarcode(String product_barcode) {
+        this.product_barcode = product_barcode;
+    }
+
+    public void setProductId(int product_id) {
+        this.product_id = product_id;
     }
 }

@@ -3,24 +3,33 @@ package com.xframework.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String name;
     private String age;
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
+
+    private String name;
+
     public String getAge() {
-        return age;
+        return this.age;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
     public void setAge(String age) {
         this.age = age;
     }
-    @Override
-    public String toString() {
-        return "User [name=" + name + ", age=" + age + "]";
+
+    public void setName(String name) {
+        this.name = name;
     }
 
-
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("User [name=");
+        stringBuilder.append(this.name);
+        stringBuilder.append(", age=");
+        stringBuilder.append(this.age);
+        stringBuilder.append("]");
+        return stringBuilder.toString();
+    }
 }

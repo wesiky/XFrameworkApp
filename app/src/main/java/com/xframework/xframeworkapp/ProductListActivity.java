@@ -30,6 +30,7 @@ import com.xframework.model.WS.CheckAllocationCheckBarcodeIn;
 import com.xframework.model.WS.CheckAllocationCheckBarcodeOut;
 import com.xframework.model.WS.SaveAllocationCheckDetailIn;
 import com.xframework.model.WS.SaveAllocationCheckDetailOut;
+import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.util.Date;
@@ -46,6 +47,8 @@ public class ProductListActivity extends AppCompatActivity {
     ProductAdapter adapter_product;
     ProductBarcodeList product_barcode_list = new ProductBarcodeList();
     Intent intent;
+
+    ProgressDialogUtil progressDialogUtil = new ProgressDialogUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +129,7 @@ public class ProductListActivity extends AppCompatActivity {
                         e.printStackTrace();
                     } finally {
                         etBarcode.getText().clear();
+                        progressDialogUtil.dismiss();
                     }
                 }
                 return true;

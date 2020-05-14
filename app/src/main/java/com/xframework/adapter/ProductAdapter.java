@@ -17,7 +17,7 @@ public class ProductAdapter extends ArrayAdapter<ProductItem> {
 
     private Context mContext;
     private int layoutResourceId;
-    private ArrayList<ProductItem> items = new ArrayList<ProductItem>();
+    private ArrayList<ProductItem> items;
 
     public ProductAdapter(Context context, int resource, ArrayList<ProductItem> items) {
         super(context, resource, items);
@@ -37,7 +37,7 @@ public class ProductAdapter extends ArrayAdapter<ProductItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ProductAdapter.ViewHolder holder;
+        ViewHolder holder;
 
         if (convertView == null) {
             LayoutInflater inflater = ((Activity)mContext).getLayoutInflater();

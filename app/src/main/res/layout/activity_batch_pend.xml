@@ -31,12 +31,13 @@
         <TextView
             android:id="@+id/tvTitle"
             style="@style/TextStyle.Title"
+            android:textColor="@android:color/white"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/title_batch_delivery"
-            android:textColor="@android:color/white" />
+
+            android:text="@string/title_batch_delivery" />
 
         <TextView
             android:id="@+id/tvSave"
@@ -49,44 +50,8 @@
             android:gravity="center"
             android:onClick="saveOnClick"
             android:text="@string/btn_save" />
-
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvBatchNoTitle"
-        style="@style/TextStyle.Content"
-        android:layout_width="80dp"
-        android:layout_height="?attr/xui_config_size_edittext_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/batch_no"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar"
-        tools:ignore="RtlCompat" />
-
-    <TextView
-        android:id="@+id/tvBatchNo"
-        style="@style/TextStyle.Content"
-        android:layout_width="0dp"
-        android:layout_height="?attr/xui_config_size_edittext_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvBatchNoTitle"
-        app:layout_constraintTop_toBottomOf="@id/top_bar" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProductList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBatchNoTitle" />
+    <TextView android:gravity="center" android:id="@+id/tvBatchNoTitle" android:layout_width="80.0dip" android:layout_height="?xui_config_size_edittext_height" android:layout_marginTop="8.0dip" android:text="@string/batch_no" android:layout_marginStart="8.0dip" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/top_bar" style="@style/TextStyle.Content" />
+    <TextView android:id="@+id/tvBatchNo" android:layout_width="0.0dip" android:layout_height="?xui_config_size_edittext_height" android:layout_marginTop="8.0dip" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/tvBatchNoTitle" app:layout_constraintTop_toBottomOf="@id/top_bar" style="@style/TextStyle.Content" />
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvProductList" android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_marginTop="8.0dip" android:layout_marginBottom="8.0dip" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/tvBatchNoTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

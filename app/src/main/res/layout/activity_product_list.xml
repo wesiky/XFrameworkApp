@@ -36,6 +36,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
+
             android:text="@string/allocation_check" />
 
         <TextView
@@ -49,101 +50,12 @@
             android:gravity="center"
             android:onClick="saveOnClick"
             android:text="@string/btn_save" />
-
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvWarehouse"
-        style="@style/TextStyle.Content"
-        android:layout_width="80dp"
-        android:layout_height="?attr/xui_config_size_edittext_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/warehouse"
-        app:layout_constraintEnd_toStartOf="@id/tvWarehouseValue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
-
-    <TextView
-        android:id="@+id/tvWarehouseValue"
-        style="@style/TextStyle.Content"
-        android:layout_width="0dp"
-        android:layout_height="?attr/xui_config_size_edittext_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/empty"
-        app:layout_constraintEnd_toStartOf="@id/tvAllocation"
-        app:layout_constraintStart_toEndOf="@+id/tvWarehouse"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
-
-    <TextView
-        android:id="@+id/tvAllocation"
-        style="@style/TextStyle.Content"
-        android:layout_width="80dp"
-        android:layout_height="?attr/xui_config_size_edittext_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/allocation"
-        app:layout_constraintEnd_toStartOf="@+id/tvAllocationTitle"
-        app:layout_constraintStart_toEndOf="@+id/tvWarehouseValue"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
-
-    <TextView
-        android:id="@+id/tvAllocationTitle"
-        style="@style/TextStyle.Content"
-        android:layout_width="0dp"
-        android:layout_height="?attr/xui_config_size_edittext_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="@string/empty"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvAllocation"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar" />
-
-    <TextView
-        android:id="@+id/tvBarcode"
-        style="@style/TextStyle.Content"
-        android:layout_width="80dp"
-        android:layout_height="?attr/xui_config_size_edittext_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/barcode"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvWarehouse" />
-
-    <EditText
-        android:id="@+id/etBarcode"
-        style="@style/TextStyle.Content"
-        android:layout_width="0dp"
-        android:layout_height="?attr/xui_config_size_edittext_height"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/empty"
-        android:inputType="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvBarcode"
-        app:layout_constraintTop_toBottomOf="@id/tvAllocation"
-        tools:targetApi="o" />
-
-    <ListView
-        android:id="@+id/lvProduct"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvBarcode" />
+    <TextView android:gravity="center" android:id="@+id/tvWarehouse" android:layout_width="80.0dip" android:layout_height="?xui_config_size_edittext_height" android:layout_marginTop="8.0dip" android:text="@string/warehouse" android:layout_marginStart="8.0dip" app:layout_constraintEnd_toStartOf="@id/tvWarehouseValue" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/top_bar" style="@style/TextStyle.Content" />
+    <TextView android:gravity="center" android:id="@+id/tvWarehouseValue" android:layout_width="0.0dip" android:layout_height="?xui_config_size_edittext_height" android:layout_marginTop="8.0dip" android:text="@string/empty" android:layout_marginStart="8.0dip" app:layout_constraintEnd_toStartOf="@id/etAllocation" app:layout_constraintStart_toEndOf="@id/tvWarehouse" app:layout_constraintTop_toBottomOf="@id/top_bar" style="@style/TextStyle.Content" />
+    <TextView android:gravity="center" android:id="@+id/etAllocation" android:layout_width="80.0dip" android:layout_height="?xui_config_size_edittext_height" android:layout_marginTop="8.0dip" android:text="@string/allocation" android:layout_marginStart="8.0dip" app:layout_constraintEnd_toStartOf="@id/tvAllocation" app:layout_constraintStart_toEndOf="@id/tvWarehouseValue" app:layout_constraintTop_toBottomOf="@id/top_bar" style="@style/TextStyle.Content" />
+    <TextView android:gravity="center" android:id="@+id/tvAllocation" android:layout_width="0.0dip" android:layout_height="?xui_config_size_edittext_height" android:layout_marginTop="8.0dip" android:text="@string/empty" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/etAllocation" app:layout_constraintTop_toBottomOf="@id/top_bar" style="@style/TextStyle.Content" />
+    <TextView android:gravity="center" android:id="@+id/tvBarcode" android:layout_width="80.0dip" android:layout_height="?xui_config_size_edittext_height" android:layout_marginTop="8.0dip" android:text="@string/barcode" android:layout_marginStart="8.0dip" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/tvWarehouse" style="@style/TextStyle.Content" />
+    <EditText android:id="@+id/etBarcode" android:nextFocusDown="@id/etBarcode" android:layout_width="0.0dip" android:layout_height="?xui_config_size_edittext_height" android:layout_marginTop="8.0dip" android:hint="@string/empty" android:ems="10" android:inputType="none" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/tvBarcode" app:layout_constraintTop_toBottomOf="@id/etAllocation" style="@style/TextStyle.Content" />
+    <ListView android:id="@+id/lvProduct" android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_marginTop="8.0dip" android:layout_marginBottom="8.0dip" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/tvBarcode" />
 </androidx.constraintlayout.widget.ConstraintLayout>
