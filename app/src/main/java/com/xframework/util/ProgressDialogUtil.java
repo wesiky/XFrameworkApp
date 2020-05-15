@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.xframework.xframeworkapp.R;
+
 public class ProgressDialogUtil {
   private AlertDialog mAlertDialog;
   
@@ -15,26 +17,26 @@ public class ProgressDialogUtil {
       this.mAlertDialog.dismiss(); 
   }
   
-  public void showProgressDialog(Context paramContext) {
+  public void showProgressDialog(Context builder) {
     if (this.mAlertDialog == null)
-      this.mAlertDialog = (new AlertDialog.Builder(paramContext, 2131755256)).create(); 
-    View view = LayoutInflater.from(paramContext).inflate(2131427387, null);
+      this.mAlertDialog = (new AlertDialog.Builder(builder, R.style.CustomProgressDialog)).create();
+    View view = LayoutInflater.from(builder).inflate(R.layout.custom_progress_dialog_view, null);
     this.mAlertDialog.setView(view, 0, 0, 0, 0);
     this.mAlertDialog.setCanceledOnTouchOutside(false);
-    ((TextView)view.findViewById(2131231262)).setText("加载中...");
+    ((TextView)view.findViewById(R.id.tvTip)).setText("加载中...");
     this.mAlertDialog.show();
   }
   
-  public void showProgressDialog(Context context, String paramString) {
-    String str = paramString;
-    if (paramString.equals(""))
+  public void showProgressDialog(Context context, String tip) {
+    String str = tip;
+    if (tip.equals(""))
       str = "加载中..."; 
     if (this.mAlertDialog == null)
-      this.mAlertDialog = (new AlertDialog.Builder(context, 2131755256)).create();
-    View view = LayoutInflater.from(context).inflate(2131427387, null);
+      this.mAlertDialog = (new AlertDialog.Builder(context, R.style.CustomProgressDialog)).create();
+    View view = LayoutInflater.from(context).inflate(R.layout.custom_progress_dialog_view, null);
     this.mAlertDialog.setView(view, 0, 0, 0, 0);
     this.mAlertDialog.setCanceledOnTouchOutside(false);
-    ((TextView)view.findViewById(2131231262)).setText(str);
+    ((TextView)view.findViewById(R.id.tvTip)).setText(str);
     this.mAlertDialog.show();
   }
 }

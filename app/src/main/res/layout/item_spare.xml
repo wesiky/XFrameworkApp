@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:background="@drawable/xui_config_list_item_selector" android:layout_width="fill_parent" android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xui_config_list_item_selector">
+
     <TextView android:gravity="start|center" android:id="@+id/tvCountName" android:layout_width="32.0dip" android:layout_height="36.0dip" android:text="数量" android:maxLines="1" android:layout_marginEnd="8.0dip" app:autoSizeTextType="uniform" app:layout_constraintEnd_toStartOf="@id/tvCount" app:layout_constraintTop_toBottomOf="@id/tvCode" />
     <TextView android:gravity="center" android:id="@+id/tvCount" android:layout_width="0.0dip" android:layout_height="36.0dip" android:text="999" android:maxLines="1" android:layout_marginEnd="8.0dip" app:autoSizeTextType="uniform" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@id/tvCode" />
     <TextView android:gravity="start|center" android:id="@+id/tvSpare" android:layout_width="0.0dip" android:layout_height="72.0dip" android:text="380V四孔插座|440V四孔插座/三相四级插座 16A 440V AC30-448" android:maxLines="2" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:autoSizeTextType="uniform" app:layout_constraintEnd_toStartOf="@id/tvCode" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
     <TextView android:gravity="center" android:id="@+id/tvCode" android:layout_width="0.0dip" android:layout_height="36.0dip" android:text="0599" android:maxLines="1" android:layout_marginEnd="8.0dip" app:autoSizeTextType="uniform" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="@id/tvCountName" app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

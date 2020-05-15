@@ -77,42 +77,42 @@ public class LoginUserInfo implements Serializable {
     }
 
     public static void setEmail(String email) {
-        email = email;
+        LoginUserInfo.email = email;
     }
 
     public static void setLgort(String lgort) {
-        lgort = lgort;
+        LoginUserInfo.lgort = lgort;
     }
 
     public static void setMrp(String mrp) {
-        mrp = mrp;
+        LoginUserInfo.mrp = mrp;
     }
 
     public static void setPhone(String phone) {
-        phone = phone;
+        LoginUserInfo.phone = phone;
     }
 
     public static void setRealName(String real_name) {
-        real_name = real_name;
+        LoginUserInfo.real_name = real_name;
     }
 
     public static void setRoleName(String role_name) {
-        role_name = role_name;
+        LoginUserInfo.role_name = role_name;
     }
 
     public static void setSuperiorId(int superior_id) {
-        superior_id = superior_id;
+        LoginUserInfo.superior_id = superior_id;
     }
 
     public static void setUserId(int user_id) {
-        user_id = user_id;
+        LoginUserInfo.user_id = user_id;
     }
 
     public static void setUserName(String user_name) {
-        user_name = user_name;
+        LoginUserInfo.user_name = user_name;
     }
 
     public static void setWarehouseId(int warehouse_id) {
-        warehouse_id = warehouse_id;
+        LoginUserInfo.warehouse_id = warehouse_id;
     }
 }

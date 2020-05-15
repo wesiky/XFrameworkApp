@@ -20,10 +20,10 @@ public class SystemInfo implements Serializable {
     }
 
     public static void setDeviceCode(String device_code) {
-        device_code = device_code;
+        SystemInfo.device_code = device_code;
     }
 
     public static void setFrameworkId(int framework_id) {
-        framework_id = framework_id;
+        SystemInfo.framework_id = framework_id;
     }
 }

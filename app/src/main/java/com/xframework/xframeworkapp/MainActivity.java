@@ -1,5 +1,6 @@
 package com.xframework.xframeworkapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,23 +16,19 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.xframework.adapter.MenuAdapter;
 import com.xframework.backgroundTask.XFHttpBackgroudTask;
-import com.xframework.model.BaseData;
 import com.xframework.model.LoginUserInfo;
 import com.xframework.model.Module;
 import com.xframework.model.ModuleType;
 import com.xframework.model.SystemInfo;
-import com.xframework.model.WS.GetGenerateAllDataIn;
-import com.xframework.model.WS.GetGenerateAllDataOut;
 import com.xframework.model.WS.GetModulesIn;
 import com.xframework.model.WS.GetModulesOut;
 import com.xframework.model.XFHttpModel;
-import com.xframework.util.HttpUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    private GridView gv;//activity_main.xml里的ListView
     private ArrayList<Module> modules = new ArrayList<>();
     private MenuAdapter adapter_menu;
     @Override
@@ -55,16 +52,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         HashMap<String, String> params = new HashMap<>();
         params.put("strJson", "{'user_id': '" + in.getUserId() + "','framework_id': '" + in.getFrameworkId() + "','device_code': '" + in.getDeviceCode() + "'}");
         model.setParams(params);
-        try {
-            //启动后台异步线程进行连接webService操作，并且根据返回结果在主线程中改变UI
-            MainActivity.ImpBackgroundTask queryAddressTask = new MainActivity.ImpBackgroundTask();
-            //启动后台任务
-            queryAddressTask.execute(model.toJson());
-        } catch (Exception e) {
-            throw e;
-        }
+        //启动后台异步线程进行连接webService操作，并且根据返回结果在主线程中改变UI
+        ImpBackgroundTask queryAddressTask = new ImpBackgroundTask();
+        //启动后台任务
+        queryAddressTask.execute(model.toJson());
     }
 
+    @SuppressLint("StaticFieldLeak")
     class ImpBackgroundTask extends XFHttpBackgroudTask {
         @Override
         public void callback(String result) {
@@ -77,7 +71,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     {
                         loadModules(module_type);
                     }
-                    gv = (GridView) findViewById(R.id.gv_test);
+                    //activity_main.xml里的ListView
+                    GridView gv = findViewById(R.id.gv_test);
                     adapter_menu = new MenuAdapter(MainActivity.this, R.layout.menu, modules);
                     gv.setAdapter(adapter_menu);
                     gv.setOnItemClickListener(MainActivity.this);
@@ -104,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     /**
      * 加载菜单
-     * @param module_type
      */
     public void loadModules(ModuleType module_type) {
         appendModules(module_type);
@@ -114,15 +108,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void appendModules(ModuleType module_type) {
-        for (Module module : module_type.getModules()) {
-            modules.add(module);
-        }
+        modules.addAll(Arrays.asList(module_type.getModules()));
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Module module=(Module) adapter_menu.getItem(position);
+        Module module= adapter_menu.getItem(position);
 
+        assert module != null;
         String className = getPackageName() + "." + module.getModuleUrl();
         try {
             Class activityClass = Class.forName(className);

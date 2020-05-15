@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout android:background="@drawable/xui_config_list_item_selector" android:layout_width="fill_parent" android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView android:gravity="start|center" android:id="@+id/tvProductName" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="DZ15LE-100/4901 100A 50mA" android:layout_marginStart="8.0dip" android:layout_marginEnd="8.0dip" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/TextStyle.Content" />
+    <TextView android:gravity="start|center" android:id="@+id/tvProductName" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="DZ15LE-100/4901 100A 50mA" android:layout_marginStart="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" style="@style/TextStyle.Content" />
 
     <TextView
         android:id="@+id/tvProductCode"
         style="@style/TextStyle.Content"
-        android:layout_width="0.0dip"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8.0dip"
-        android:layout_marginTop="8.0dip"
-        android:layout_marginEnd="8.0dip"
-        android:layout_marginBottom="8.0dip"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="start|center"
         android:text="\ 710301514110050"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,9 +22,9 @@
     <TextView
         android:id="@+id/tvCountName"
         style="@style/TextStyle.Content"
-        android:layout_width="50.0dip"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8.0dip"
+        android:layout_marginTop="8dp"
         android:gravity="start|center"
         android:text="数量"
         app:layout_constraintEnd_toStartOf="@id/tvCountValue"
@@ -34,10 +34,10 @@
     <TextView
         android:id="@+id/tvCountValue"
         style="@style/TextStyle.Content"
-        android:layout_width="30.0dip"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8.0dip"
-        android:layout_marginEnd="8.0dip"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="start|center"
         android:text="999"
         app:layout_constraintEnd_toEndOf="parent"

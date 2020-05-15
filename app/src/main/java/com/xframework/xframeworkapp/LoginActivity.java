@@ -1,6 +1,6 @@
 package com.xframework.xframeworkapp;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,13 +26,12 @@ import com.xframework.model.WS.LoginIn;
 import com.xframework.model.WS.LoginOut;
 import com.xframework.model.XFHttpModel;
 import com.xframework.util.HttpUtil;
-import com.xframework.util.PropertiesUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -40,7 +39,6 @@ import static com.xframework.util.MD5Util.MD5Encode;
 
 public class LoginActivity extends AppCompatActivity {
 
-    String result;
     private EditText etUserName;
     private EditText etPassword;
 
@@ -63,10 +61,8 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this, "配置初始化失败，请重新安装APP", Toast.LENGTH_LONG).show();
         }
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
 
@@ -75,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出
     }
 
+    @SuppressLint("StaticFieldLeak")
     class ImpBackgroundTask extends XFHttpBackgroudTask {
         @Override
         public void callback(String result) {
@@ -126,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 //登录异常：提示错误
                 Toast.makeText(LoginActivity.this, "登录异常，请联系管理员", Toast.LENGTH_LONG).show();
             } finally {
-                Button button_login = (Button) findViewById(R.id.button_login);
+                Button button_login = findViewById(R.id.button_login);
                 button_login.setEnabled(true);
             }
         }
@@ -134,9 +131,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void loginOnClick(View v) {
-        Button button_login = (Button) findViewById(R.id.button_login);
-        EditText edit_username = (EditText) findViewById(R.id.et_username);
-        EditText edit_password = (EditText) findViewById(R.id.et_password);
+        Button button_login = findViewById(R.id.button_login);
+        EditText edit_username = findViewById(R.id.et_username);
+        EditText edit_password = findViewById(R.id.et_password);
         button_login.setEnabled(false);
         LoginIn in = new LoginIn();
         in.setUserName(edit_username.getText().toString());
@@ -165,11 +162,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("HardwareIds")
     private void loadProperties() throws IOException {
         Properties pro = new Properties();
         try {
             InputStream in = getApplicationContext().getAssets().open("applicationConfig.properties");
-            pro.load(new InputStreamReader(in, "utf-8"));
+            pro.load(new InputStreamReader(in, StandardCharsets.UTF_8));
 //            WebServiceUtil.setTimeout(Integer.parseInt(pro.getProperty("webservice_timeout")));
 //            WebServiceUtil.setWsdl_url(pro.getProperty("xframework_webservice_uri"));
 //            WebServiceUtil.setName_sapce(pro.getProperty("xframework_webservice_namespace"));
@@ -190,9 +188,9 @@ public class LoginActivity extends AppCompatActivity {
     private void loadLoginInfo() throws IOException {
         etUserName = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
-        SharedPreferences pref = getSharedPreferences("login_info",MODE_PRIVATE);
-        etUserName.setText(pref.getString("login_name",""));
-        etPassword.setText(pref.getString("password",""));
+        SharedPreferences pref = getSharedPreferences("login_info", MODE_PRIVATE);
+        etUserName.setText(pref.getString("login_name", ""));
+        etPassword.setText(pref.getString("password", ""));
     }
 
     private void saveLoginInfo() throws IOException {

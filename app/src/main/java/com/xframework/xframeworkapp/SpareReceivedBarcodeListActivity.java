@@ -1,22 +1,24 @@
 package com.xframework.xframeworkapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.xframework.adapter.SpareReceivedBarcodeAdapter;
 import com.xframework.delegate.BaseDelegate;
 import com.xframework.model.SWSpareBarcode;
 import com.xframework.model.SpareBarcodeList;
 import com.xframework.model.SpareItem;
-import java.io.Serializable;
+
 import java.util.ArrayList;
+
+import static android.view.Window.FEATURE_NO_TITLE;
+import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 
 public class SpareReceivedBarcodeListActivity extends AppCompatActivity {
     BarcodeDelegate delegate = new BarcodeDelegate();
@@ -27,58 +29,48 @@ public class SpareReceivedBarcodeListActivity extends AppCompatActivity {
 
     SpareBarcodeList spare_barcode_list;
 
-    protected void onCreate(Bundle paramBundle) {
-        super.onCreate(paramBundle);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         try {
-            requestWindowFeature(1);
-            getWindow().setFlags(1024, 1024);
+            requestWindowFeature(FEATURE_NO_TITLE);
+            getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
             setContentView(R.layout.activity_spare_received_barcode_list);
             this.intent = getIntent();
-            int i = this.intent.getIntExtra("item_index", -1);
-            this.spare_barcode_list = (SpareBarcodeList)this.intent.getSerializableExtra("spare_barcode_list");
-            if (i >= 0) {
-                this.rvBarcode = (RecyclerView)findViewById(R.id.lvBarcode);
-                this.rvBarcode.setLayoutManager((RecyclerView.LayoutManager)new LinearLayoutManager((Context)this));
-                SpareItem spareItem = this.spare_barcode_list.getItems().get(i);
-                ArrayList<SWSpareBarcode> arrayList = new ArrayList();
-                for (SWSpareBarcode sWSpareBarcode : this.spare_barcode_list.getBarcodes()) {
-                    if (sWSpareBarcode.getSpareId() == spareItem.getSpareId())
-                        arrayList.add(sWSpareBarcode);
+            int index = this.intent.getIntExtra("item_index", -1);
+            spare_barcode_list = (SpareBarcodeList)this.intent.getSerializableExtra("spare_barcode_list");
+            if (index >= 0) {
+                this.rvBarcode = findViewById(R.id.lvBarcode);
+                this.rvBarcode.setLayoutManager(new LinearLayoutManager(this));
+                SpareItem item = this.spare_barcode_list.getItems().get(index);
+                ArrayList<SWSpareBarcode> spareBarcodes = new ArrayList<>();
+                for (SWSpareBarcode spareBarcode :spare_barcode_list.getBarcodes()) {
+                    if (spareBarcode.getSpareId() == item.getSpareId())
+                        spareBarcodes.add(spareBarcode);
                 }
-                SpareReceivedBarcodeAdapter spareReceivedBarcodeAdapter = new SpareReceivedBarcodeAdapter((Context)this, R.layout.item_spare_barcode, arrayList, this.delegate);
-                this.rvBarcode.setAdapter((RecyclerView.Adapter)spareReceivedBarcodeAdapter);
+                SpareReceivedBarcodeAdapter spareReceivedBarcodeAdapter = new SpareReceivedBarcodeAdapter(this, R.layout.item_spare_barcode, spareBarcodes, this.delegate);
+                this.rvBarcode.setAdapter(spareReceivedBarcodeAdapter);
             } else {
                 finish();
             }
-            return;
-        } catch (Exception exception) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(getClass().getName());
-            stringBuilder.append(" onCreate: ");
-            stringBuilder.append(exception.getMessage());
-            Log.e("SystemError", stringBuilder.toString());
-            stringBuilder = new StringBuilder();
-            stringBuilder.append("程序异常，请联系管理员，异常原因：");
-            stringBuilder.append(exception.getMessage());
-            Toast.makeText((Context)this, stringBuilder.toString(), Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "程序异常，请联系管理员，异常原因：" + e.getMessage(), Toast.LENGTH_LONG).show();
             finish();
-            return;
         }
     }
 
-    public void returnOnClick(View paramView) {
+    public void returnOnClick(View v) {
         finish();
     }
 
-    public void saveOnClick(View paramView) {
+    public void saveOnClick(View v) {
         try {
-            this.spare_barcode_list.RefreshItemsQuantity();
-            this.intent.putExtra("spare_barcode_list", (Serializable)this.spare_barcode_list);
-            setResult(-1, this.intent);
-        } catch (Exception exception) {
-
-        } finally {
-            Exception exception;
+            spare_barcode_list.RefreshItemsQuantity();
+            intent.putExtra("spare_barcode_list", spare_barcode_list);
+            setResult(RESULT_OK, intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "程序异常，请联系管理员，异常原因：" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
         finish();
     }
@@ -86,18 +78,12 @@ public class SpareReceivedBarcodeListActivity extends AppCompatActivity {
     private class BarcodeDelegate implements BaseDelegate {
         private BarcodeDelegate() {}
 
-        public boolean removeBarcodes(String param1String) {
-            if (SpareReceivedBarcodeListActivity.this.spare_barcode_list != null) {
-                SpareReceivedBarcodeListActivity.this.spare_barcode_list.removeBarcode(param1String);
+        public boolean removeBarcodes(String barcode) {
+            if (spare_barcode_list != null) {
+                spare_barcode_list.removeBarcode(barcode);
                 return true;
             }
             return false;
         }
     }
 }
-
-
-/* Location:              C:\test\dex2jar-2.0\classes2-dex2jar.jar!\com\xframework\xframeworkapp\SpareReceivedBarcodeListActivity.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       1.1.3
- */
