@@ -26,6 +26,7 @@ import com.xframework.model.WS.LoginIn;
 import com.xframework.model.WS.LoginOut;
 import com.xframework.model.XFHttpModel;
 import com.xframework.util.HttpUtil;
+import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
 
 import java.io.IOException;
