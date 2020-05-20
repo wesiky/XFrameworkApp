@@ -28,6 +28,7 @@ import com.xframework.model.XFHttpModel;
 import com.xframework.util.HttpUtil;
 import com.xframework.util.ProgressDialogUtil;
 import com.xframework.util.XFrameworkWebServiceUtil;
+import com.xuexiang.xui.XUI;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
