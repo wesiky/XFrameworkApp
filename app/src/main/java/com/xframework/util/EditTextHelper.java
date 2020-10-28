@@ -1,13 +1,14 @@
 package com.xframework.util;
 
 import android.os.Build;
+import android.text.InputType;
 import android.widget.EditText;
 import java.lang.reflect.Method;
 
 public class EditTextHelper {
     public static void CloseKeyBoard(EditText editText) {
         if (Build.VERSION.SDK_INT <= 10) {
-            editText.setInputType(0);
+            editText.setInputType(InputType.TYPE_NULL);
             return;
         }
         try {

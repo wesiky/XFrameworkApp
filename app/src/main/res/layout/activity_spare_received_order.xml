@@ -54,7 +54,20 @@
     <TextView android:gravity="center" android:id="@+id/tvOrderCode" android:layout_width="80dp" android:layout_height="36dp" android:layout_marginTop="8dp" android:text="@string/received_order_code" android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/top_bar" style="@style/TextStyle.Content" />
     <TextView android:gravity="center_vertical" android:id="@+id/etOrderCode" android:layout_width="0dp" android:layout_height="36dp" android:layout_marginTop="8dp" android:hint="@string/empty" android:ems="10" android:inputType="none" android:layout_marginStart="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/tvOrderCode" app:layout_constraintTop_toBottomOf="@id/top_bar" style="@style/TextStyle.Content" />
     <TextView android:gravity="center" android:id="@+id/tvAllocation" android:layout_width="80dp" android:layout_height="36dp" android:layout_marginTop="8dp" android:text="@string/allocation" android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/etOrderCode" style="@style/TextStyle.Content" />
-    <EditText android:id="@+id/etAllocation" android:nextFocusDown="@id/etBarcode" android:layout_width="0dp" android:layout_height="36dp" android:hint="@string/empty" android:ems="10" android:singleLine="true" android:inputType="text" android:layout_marginStart="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/tvAllocation" app:layout_constraintTop_toTopOf="@id/tvAllocation" style="@style/EditText.Material" />
+    <EditText android:id="@+id/etAllocation"
+        android:nextFocusDown="@id/etBarcode"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:hint="@string/empty"
+        android:ems="10"
+        android:singleLine="true"
+        android:inputType="text"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvAllocation"
+        app:layout_constraintTop_toTopOf="@id/tvAllocation"
+        style="@style/EditText.Material" />
     <TextView android:gravity="center" android:id="@+id/tvBarcode" android:layout_width="80dp" android:layout_height="36dp" android:layout_marginTop="8dp" android:text="@string/barcode" android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/tvAllocation" style="@style/TextStyle.Content" />
     <EditText android:id="@+id/etBarcode" android:nextFocusDown="@id/etBarcode" android:layout_width="0dp" android:layout_height="36dp" android:hint="@string/empty" android:ems="10" android:singleLine="true" android:inputType="text" android:layout_marginStart="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@id/tvBarcode" app:layout_constraintTop_toTopOf="@id/tvBarcode" style="@style/EditText.Material" />
     <ListView android:id="@+id/lvSpare" android:layout_width="0dp" android:layout_height="0dp" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" android:layout_marginStart="8dp" android:layout_marginEnd="8dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/tvBarcode" style="@style/Widget.AppCompat.ListView" />

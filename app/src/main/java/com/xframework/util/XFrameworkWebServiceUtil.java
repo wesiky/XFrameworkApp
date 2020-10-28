@@ -38,6 +38,8 @@ import com.xframework.model.WS.GetBarcodeInfoIn;
 import com.xframework.model.WS.GetBarcodeInfoOut;
 import com.xframework.model.WS.GetBatchOrderInfoIn;
 import com.xframework.model.WS.GetBatchOrderInfoOut;
+import com.xframework.model.WS.GetBeltlineListIn;
+import com.xframework.model.WS.GetBeltlineListOut;
 import com.xframework.model.WS.GetCheckAllocationListIn;
 import com.xframework.model.WS.GetCheckAllocationListOut;
 import com.xframework.model.WS.GetCheckOrderListIn;
@@ -67,12 +69,14 @@ import com.xframework.model.WS.GetSuspendedBatchBodyListIn;
 import com.xframework.model.WS.GetSuspendedBatchBodyListOut;
 import com.xframework.model.WS.GetUserInfoIn;
 import com.xframework.model.WS.GetUserInfoOut;
+import com.xframework.model.WS.GetWorksListOut;
 import com.xframework.model.WS.LoginIn;
 import com.xframework.model.WS.LoginOut;
 import com.xframework.model.WS.SaveAllocationCheckDetailIn;
 import com.xframework.model.WS.SaveAllocationCheckDetailOut;
 import com.xframework.model.WS.SaveDeliveryOrderIn;
 import com.xframework.model.WS.SaveDeliveryOrderOut;
+import com.xframework.model.WS.SaveLotTrackingDeliveryIn;
 import com.xframework.model.WS.SaveMoveOrderIn;
 import com.xframework.model.WS.SaveMoveOrderOut;
 import com.xframework.model.WS.SaveReceivedOrderIn;
@@ -609,6 +613,36 @@ public class XFrameworkWebServiceUtil {
             return gson.fromJson(result, SuspendedBatchBodyOut.class);
         } catch (Exception e) {
             return gson.fromJson(format(FORMAT_ERROR, e.getMessage()), SuspendedBatchBodyOut.class);
+        }
+    }
+
+    public static GetWorksListOut API_GetWorksList(BaseWSIn in) {
+        String method_name = "API_GetWorksList";
+        String result = sendSoapPost(method_name, in.toJson());
+        try {
+            return gson.fromJson(result, GetWorksListOut.class);
+        } catch (Exception e) {
+            return gson.fromJson(format(FORMAT_ERROR, e.getMessage()), GetWorksListOut.class);
+        }
+    }
+
+    public static BaseWSOut API_SaveLotTrackingDelivery(SaveLotTrackingDeliveryIn in) {
+        String method_name = "API_SaveLotTrackingDelivery";
+        String result = sendSoapPost(method_name, in.toJson());
+        try {
+            return gson.fromJson(result, BaseWSOut.class);
+        } catch (Exception e) {
+            return gson.fromJson(format(FORMAT_ERROR, e.getMessage()), BaseWSOut.class);
+        }
+    }
+
+    public static GetBeltlineListOut API_GetBeltlineList(GetBeltlineListIn in) {
+        String method_name = "API_GetBeltlineList";
+        String result = sendSoapPost(method_name, in.toJson());
+        try {
+            return gson.fromJson(result, GetBeltlineListOut.class);
+        } catch (Exception e) {
+            return gson.fromJson(format(FORMAT_ERROR, e.getMessage()), GetBeltlineListOut.class);
         }
     }
 

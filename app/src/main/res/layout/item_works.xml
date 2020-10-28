@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvWorksName"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:text="大类"/>
+
+    <View
+        android:layout_width="80dp"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/tvWorksName"/>
+    <View
+        android:id="@+id/view"
+        android:layout_width="6dp"
+        android:layout_height="50dp"/>
+</RelativeLayout>
